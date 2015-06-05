@@ -1,27 +1,17 @@
 doctype html
 html
   head(lang='en')
-    meta(charset='UTF-8')
-    |     
-    title Flask React
-    |     
+    meta(charset='UTF-8')  
+    title speakeasy 
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    // styles
-    |     
+
+    // styles  
     link(rel='stylesheet', type='text/css', href="{{ url_for('static', filename='styles/main.css') }}")
-  |   
+
   body
-    .container
-      h1.test Flask React
-      |       
-      br
-      |       
-      #main
+
     // scripts
     script(src="{{ url_for('static', filename='vendor/react/react.min.js') }}")
-    |     
     script(src="{{ url_for('static', filename='vendor/jquery/dist/jquery.min.js') }}")
-    |     
-    script(src="{{ url_for('static', filename='vendor/bootstrap/dist/js/bootstrap.min.js') }}")
-    |     
-    script(src="{{ url_for('static', filename='scripts/main.js') }}")
+    script(src="{{ url_for('static', filename='scripts/speechRecognition.js') }}")
+    script(src="{{ url_for('static', filename='scripts/index.js') }}")

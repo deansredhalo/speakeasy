@@ -9,15 +9,19 @@
     "react": "^0.13.3"
   },
   "devDependencies": {
+    "es6ify": "^1.6.0",
+    "gulp-babel": "^5.1.0",
     "gulp-browserify": "^0.5.1",
     "gulp-clean": "^0.3.1",
     "gulp-jade": "^1.0.1",
-    "gulp-react": "^3.0.1",
+    "gulp-reactify": "^3.0.1",
+    "gulp-rename": "^1.2.2",
     "gulp-size": "^1.2.1",
     "gulp-stylus": "^2.0.3",
-    "react-render": "^0.3.0",
+    "gulp-traceur": "^0.17.1",
     "reactify": "^1.1.1",
-    "stylus": "^0.51.1"
+    "stylus": "^0.51.1",
+    "traceur": "0.0.90"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

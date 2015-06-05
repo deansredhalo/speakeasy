@@ -2,7 +2,9 @@
 
 // reqs
 var gulp = require('gulp'),
-	react = require('gulp-react'),
+	browserify = require('gulp-browserify'),
+	babel = require('gulp-babel'),
+	rename = require('gulp-rename'),
 	clean = require('gulp-clean'),
 	size = require('gulp-size'),
 	stylus = require('gulp-stylus'),
@@ -10,10 +12,18 @@ var gulp = require('gulp'),
 
 // tasks
 gulp.task('transform', function() {
-	return gulp.src('./speakeasy/assets/scripts/*.js')
-		.pipe(react({ harmony: true, es6module: true }))
-		.pipe(gulp.dest('./build/assets/scripts'))
+	return gulp.src('./speakeasy/assets/components/*.jsx')
+		.pipe(browserify({ transform: ['reactify'] }))
+		.pipe(rename(function (path) { path.extname = '.js' }))
+		.pipe(gulp.dest('./build/assets/components'))
 		.pipe(size());
+});
+
+gulp.task('transpile', function() {
+	return gulp.src('./speakeasy/assets/scripts/*.js')
+		.pipe(babel())
+		.pipe(gulp.dest('./build/assets/scripts'))
+		.pipe(size());	
 });
 
 gulp.task('stylus', function () {
@@ -43,14 +53,14 @@ gulp.task('copy-bower-components', function() {
 });
 
 gulp.task('clean', function() {
-	return gulp.src('./build/scripts')
+	return gulp.src(['./build/scripts', './build/components/'])
 		.pipe(clean());
 });
 
 gulp.task('watch', function() {
-	gulp.watch('./speakeasy/assets/scripts/*.jsx', ['transform']);
+	gulp.watch('./speakeasy/assets/scripts/*.js', ['transform']);
 	gulp.watch('./speakeasy/assets/styles/*.styl', ['stylus']);
 	gulp.watch('./speakeasy/assets/templates/*.jade', ['jade']);
 });
 
-gulp.task('default', ['clean', 'transform', 'stylus', 'jade', 'copy-application-files', 'copy-bower-components']);
+gulp.task('default', ['clean', 'transform', 'transpile', 'stylus', 'jade', 'copy-application-files', 'copy-bower-components']);
