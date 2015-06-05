@@ -1,2 +1,3 @@
 Flask==0.10.1
 virtualenv>=13.0.0
+PyReact==0.5.2

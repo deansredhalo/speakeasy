@@ -31,7 +31,7 @@ gulp.task('jade', function() {
 });
 
 gulp.task('copy-application-files', function() {
-	return gulp.src('./speakeasy/application')
+	return gulp.src('./speakeasy/application/*.py')
 		.pipe(gulp.dest('./build'))
 		.pipe(size());
 });
