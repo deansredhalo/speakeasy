@@ -1,0 +1,32 @@
+{
+  "name": "speakeasy",
+  "version": "0.0.1",
+  "authors": [
+    "T-Jay Tipps <deansredhalo@gmail.com>"
+  ],
+  "description": "Python, Flask, and React application utilizing Web Speech API to cull search results and data.",
+  "main": "run.sh",
+  "keywords": [
+    "python",
+    "flask",
+    "react",
+    "web",
+    "speech",
+    "voice",
+    "driven"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.13.3",
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.4"
+  }
+}
