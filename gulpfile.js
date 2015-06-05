@@ -2,16 +2,16 @@
 
 // reqs
 var gulp = require('gulp'),
-	browserify = require('gulp-browserify'),
+	react = require('gulp-react'),
 	clean = require('gulp-clean'),
 	size = require('gulp-size'),
 	stylus = require('gulp-stylus'),
 	jade = require('gulp-jade');
 
 // tasks
-gulp.task('transformJSX', function() {
+gulp.task('transform', function() {
 	return gulp.src('./speakeasy/assets/scripts/*.js')
-		.pipe(browserify({transform: ['reactify']}))
+		.pipe(react({ harmony: true, es6module: true }))
 		.pipe(gulp.dest('./build/assets/scripts'))
 		.pipe(size());
 });
@@ -47,8 +47,10 @@ gulp.task('clean', function() {
 		.pipe(clean());
 });
 
-gulp.task('default', ['clean', 'transformJSX', 'stylus', 'jade', 'copy-application-files', 'copy-bower-components'], function() {
-	gulp.watch('./speakeasy/assets/scripts/*.jsx', ['transformJSX']);
+gulp.task('watch', function() {
+	gulp.watch('./speakeasy/assets/scripts/*.jsx', ['transform']);
 	gulp.watch('./speakeasy/assets/styles/*.styl', ['stylus']);
 	gulp.watch('./speakeasy/assets/templates/*.jade', ['jade']);
 });
+
+gulp.task('default', ['clean', 'transform', 'stylus', 'jade', 'copy-application-files', 'copy-bower-components']);
