@@ -1,7 +1,7 @@
 {
   "name": "speakeasy",
   "version": "0.0.1",
-  "description": "Python, Flask, and React application utiziling the Web Speech API.",
+  "description": "Python, Flask, and React application utilizing the Web Speech API.",
   "main": "run.sh",
   "dependencies": {
     "bower": "^1.4.1",

@@ -12,7 +12,7 @@ var gulp = require('gulp'),
 
 // tasks
 gulp.task('transform', function() {
-	return gulp.src('./speakeasy/assets/components/*.jsx')
+	return gulp.src('./dev/assets/components/*.jsx')
 		.pipe(browserify({ transform: ['reactify'] }))
 		.pipe(rename(function (path) { path.extname = '.js' }))
 		.pipe(gulp.dest('./build/assets/components'))
@@ -20,35 +20,41 @@ gulp.task('transform', function() {
 });
 
 gulp.task('transpile', function() {
-	return gulp.src('./speakeasy/assets/scripts/*.js')
+	return gulp.src('./dev/assets/scripts/*.js')
 		.pipe(babel())
 		.pipe(gulp.dest('./build/assets/scripts'))
 		.pipe(size());	
 });
 
 gulp.task('stylus', function () {
-	return gulp.src('./speakeasy/assets/styles/*.styl')
+	return gulp.src('./dev/assets/styles/*.styl')
 		.pipe(stylus())
 		.pipe(gulp.dest('./build/assets/styles'))
 		.pipe(size());
 });
 
 gulp.task('jade', function() {
-	return gulp.src('./speakeasy/assets/templates/*.jade')
+	return gulp.src('./dev/assets/templates/*.jade')
 		.pipe(jade())
 		.pipe(gulp.dest('./build/assets/templates'))
 		.pipe(size());
 });
 
 gulp.task('copy-application-files', function() {
-	return gulp.src('./speakeasy/application/*.py')
+	return gulp.src('./dev/application/*.py')
 		.pipe(gulp.dest('./build'))
 		.pipe(size());
 });
 
+gulp.task('copy-manifests', function() {
+	return gulp.src('./dev/assets/manifests/**/*')
+		.pipe(gulp.dest('./build/assets/manifests'))
+		.pipe(size());
+});
+
 gulp.task('copy-bower-components', function() {
-	return gulp.src('./speakeasy/assets/bower_components/**')
-		.pipe(gulp.dest('./build/assets/vendor'))
+	return gulp.src('./dev/assets/bower_components/**')
+		.pipe(gulp.dest('./build/assets/bower_components'))
 		.pipe(size());
 });
 
@@ -58,9 +64,10 @@ gulp.task('clean', function() {
 });
 
 gulp.task('watch', function() {
-	gulp.watch('./speakeasy/assets/scripts/*.js', ['transform']);
-	gulp.watch('./speakeasy/assets/styles/*.styl', ['stylus']);
-	gulp.watch('./speakeasy/assets/templates/*.jade', ['jade']);
+	gulp.watch('./dev/assets/scripts/*.js', ['transform']);
+	gulp.watch('./dev/assets/styles/*.styl', ['stylus']);
+	gulp.watch('./dev/assets/templates/*.jade', ['jade']);
+	gulp.watch('./dev/application/*.py', ['copy-application-files']);
 });
 
-gulp.task('default', ['clean', 'transform', 'transpile', 'stylus', 'jade', 'copy-application-files', 'copy-bower-components']);
+gulp.task('default', ['clean', 'transform', 'transpile', 'stylus', 'jade', 'copy-application-files', 'copy-manifests', 'copy-bower-components']);
