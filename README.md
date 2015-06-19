@@ -64,7 +64,7 @@ Same as above, just run the install command and Bower should do the rest.
 
 ## Build System
 
-*speakeasy* uses [GulpJS](http://www.gulpjs.com) to create builds and manage its files. Let's check out how to make a build.
+*speakeasy* uses [Gulp](http://www.gulpjs.com) to create builds and manage its files. Let's check out how to make a build.
 
 At this point in time, the application structure is filled with example items to help highlight where things are placed and how they are used.  Just open up the *speakeasy* root directory in your terminal and type:
 
