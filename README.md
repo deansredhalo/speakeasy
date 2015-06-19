@@ -12,11 +12,11 @@
 
 This will walk you through install and configuring all the required dependencies.
 
-###### Python
+##### Python
 
 First things first, you'll need to [install Python](https://www.python.org/downloads/) if you haven't already.  
 
-###### pip
+##### pip
 
 Python 2.7.9 or higher comes shipped with **pip**, its package manager, pre-installed.  If you are running earlier than 2.7.9, head over and [install **pip**](https://pip.pypa.io/en/latest/installing.html).
 
@@ -24,7 +24,7 @@ Time to let **pip** work its magic, like so (in the root directory):
 
 ` $ pip install -r requirements.txt `
 
-###### virtualenv
+##### virtualenv
 
 Let's create the virtual environment that Python will use to execute and manage its dependencies for *speakeasy*. Make sure you are in the directory you have cloned *speakeasy* into and then:
 
@@ -36,7 +36,7 @@ $ . application/bin/active
 
 This will get you into your virtual environment so that you can install...
 
-###### Flask
+##### Flask
 
 Inside your virtual environment you just activated, you will want to run the following command:
 
@@ -46,7 +46,7 @@ At this point you'll see Flask being downloaded and installed.  Once it is compl
 
 ` $ deactivate `
 
-###### npm modules
+##### npm modules
 
 This one should be pretty self-evident at this point, but if not:
 
@@ -54,7 +54,7 @@ This one should be pretty self-evident at this point, but if not:
 
 This will get all the node module dependencies for the application.
 
-###### Bower components
+##### Bower components
 
 Same as above, just run the install command and Bower should do the rest.
 
