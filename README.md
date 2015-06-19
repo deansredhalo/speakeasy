@@ -8,7 +8,7 @@
 
 ---
 
-*speakeasy* is a boilerplate and proof-of-concept web build that brings together a [**Python**](http://www.python.org) back-end equipped with [**Flask**](http://flask.pocoo.org/) for template rendering, asset piping and routing and boostrapped with isomorphic [**React**](http://www.reactjs.com) for front-end components.  It's also uses [**Stylus**](https://learnboost.github.io/stylus/) for CSS pre-processing goodness, [**jade**](http://www.jade-lang.com) for markup templating, [**Browserify**](http://www.browserify.org) and [**Bower**](http://www.bower.io) for dependency management.  ES6 syntax is supported using [**Babel**](http://www.babeljs.io) and everything is built and compiled using [**Gulp**](http://www.gulpjs.com). 
+*speakeasy* is a boilerplate and proof-of-concept web build that brings together a [**Python**](http://www.python.org) back-end equipped with [**Flask**](http://flask.pocoo.org/) for template rendering, asset piping and routing and boostrapped with isomorphic [**React**](http://www.reactjs.com) for front-end components.  It also uses [**Stylus**](https://learnboost.github.io/stylus/) for CSS pre-processing goodness, [**jade**](http://www.jade-lang.com) for markup templating, [**Browserify**](http://www.browserify.org) and [**Bower**](http://www.bower.io) for dependency management.  ES6 syntax is supported using [**Babel**](http://www.babeljs.io) and everything is built and compiled using [**Gulp**](http://www.gulpjs.com). 
 
 ## Installation
 
