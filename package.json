@@ -1,7 +1,7 @@
 {
   "name": "speakeasy",
   "version": "0.0.1",
-  "description": "Python, Flask, and React application utilizing the Web Speech API.",
+  "description": "Python, Flask, and React application boilerplate",
   "main": "run.sh",
   "dependencies": {
     "bower": "^1.4.1",
@@ -33,10 +33,7 @@
     "python",
     "flask",
     "react",
-    "web",
-    "speech",
-    "voice",
-    "driven"
+    "web"
   ],
   "author": "T-Jay Tipps",
   "license": "MIT",
