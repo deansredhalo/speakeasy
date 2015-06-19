@@ -1,10 +1,8 @@
+![speakeasy](speakeasy.png)
 
-
-# speakeasy 
+### Python, Flask, and React web application boilerplate
 
 ![Built Using:](built_using.png)
-
-### Import your Tritt-based custom elements
 
 ## Installation
 

@@ -1,6 +1,6 @@
 {
   "name": "speakeasy",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Python, Flask, and React application boilerplate",
   "main": "run.sh",
   "dependencies": {
