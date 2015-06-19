@@ -6,16 +6,14 @@ html
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
 
     // styles  
-    {% for import in CSS_IMPORTS %}
+    | {% for import in CSS_IMPORTS %}
     link(rel='stylesheet', type='text/css', href="{{import}}")
-    {% endfor %}
+    | {% endfor %}
 
   body
-    div
+    div(id='react-app')
 
     // scripts
-    script(src="{{ url_for('static', filename='bower_components/react/react.min.js') }}")
-    script(src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}")
-    {% for import in JS_IMPORTS %}
+    | {% for import in JS_IMPORTS %}
     script(src="{{import}}")
-    {% endfor %}
+    | {% endfor %}

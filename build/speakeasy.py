@@ -11,24 +11,28 @@ ASSETS_PATH = 'assets/'
 JS_IMPORTS = []
 CSS_IMPORTS = []
 
-@app.route('/')
-def home_screen():
-	json_data = open(os.path.join(MANIFESTS_PATH, "main.json"), "r")
+def fetch_imports( routeName ):
+	json_data = open(os.path.join(MANIFESTS_PATH, routeName + ".json"), "r")
 	data = json.load(json_data)
+
 	JS_IMPORTS[:] = []
 	CSS_IMPORTS[:] = []
+
 	for files in data:
 		for file in data[files]:
-			print(file)
+
+			importString = ASSETS_PATH + file
+			importString.strip()
+
 			if file.endswith('.js'):
-				importString = ASSETS_PATH + file
-				importString.strip()
 				JS_IMPORTS.append(Markup(importString))
+
 			else:
-				importString = ASSETS_PATH + file
-				importString.strip()
 				CSS_IMPORTS.append(Markup(importString))
 
+@app.route('/')
+def home_screen():
+	fetch_imports('index')
 	return render_template('index.html', JS_IMPORTS = JS_IMPORTS, CSS_IMPORTS = CSS_IMPORTS)
 
 if __name__ == '__main__':

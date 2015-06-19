@@ -1,4 +1,6 @@
-/** @jsx React.DOM */
+'use strict';
+
+var React = require('react');
 
 var DynamicSearch = React.createClass({
 
@@ -49,7 +51,10 @@ var countries = [
   {"name": "Spain"}, {"name": "Poland"}, {"name": "Haiti"}
 ];
 
+
 React.render(
   <DynamicSearch items={ countries } />,
-  document.getElementById('main')
+  document.getElementById('react-app')
 );
+
+module.exports = DynamicSearch;

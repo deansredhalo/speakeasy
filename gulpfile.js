@@ -1,8 +1,16 @@
 'use strict';
 
+var debug = false;
+
 // reqs
 var gulp = require('gulp'),
 	browserify = require('gulp-browserify'),
+	reactify = require('reactify'),
+	concat = require('gulp-concat'),
+	plumber = require('gulp-plumber'),
+	uglify = require('gulp-uglify'),
+	bower = require('main-bower-files'),
+	sourcemaps = require('gulp-sourcemaps'),
 	babel = require('gulp-babel'),
 	rename = require('gulp-rename'),
 	clean = require('gulp-clean'),
@@ -11,8 +19,15 @@ var gulp = require('gulp'),
 	jade = require('gulp-jade');
 
 // tasks
-gulp.task('transform', function() {
+gulp.task('copy-components', function() {
 	return gulp.src('./dev/assets/components/*.jsx')
+		.pipe(gulp.dest('./build/assets/components'))
+		.pipe(size());
+});
+
+gulp.task('transform', function() {
+	return gulp.src('./dev/assets/components/*.js*', { read: false })
+		.pipe(babel())
 		.pipe(browserify({ transform: ['reactify'] }))
 		.pipe(rename(function (path) { path.extname = '.js' }))
 		.pipe(gulp.dest('./build/assets/components'))
@@ -22,6 +37,7 @@ gulp.task('transform', function() {
 gulp.task('transpile', function() {
 	return gulp.src('./dev/assets/scripts/*.js')
 		.pipe(babel())
+		.pipe(concat('./scripts.js'))
 		.pipe(gulp.dest('./build/assets/scripts'))
 		.pipe(size());	
 });
@@ -52,22 +68,46 @@ gulp.task('copy-manifests', function() {
 		.pipe(size());
 });
 
-gulp.task('copy-bower-components', function() {
-	return gulp.src('./dev/assets/bower_components/**')
-		.pipe(gulp.dest('./build/assets/bower_components'))
-		.pipe(size());
+gulp.task('copy-dependencies', function() {
+	return gulp.src(bower({ base: './dev/assets/bower_components' }))
+        .pipe(plumber())
+        .pipe(uglify({
+            output: { 
+                beautify: debug,
+                comments: debug ? true : /^!|\b(copyright|license)\b|@(preserve|license|cc_on)\b/i,
+            },
+            compress: { 
+                sequences: !debug,
+                booleans: !debug,
+                conditionals: !debug,
+                hoist_funs: false,
+                hoist_vars: debug,
+                warnings: debug,
+            },
+            mangle: !debug,
+            outSourceMap: true,
+            basePath: './build/assets/dependencies',
+            sourceRoot: '/'
+        }))
+        .pipe(concat('./dependencies.js', {
+            newLine:'\n;' 
+        }))
+        .pipe(browserify())
+        .pipe(plumber.stop())
+        .pipe(gulp.dest('./build/assets/dependencies'))
+        .pipe(size());
 });
 
 gulp.task('clean', function() {
-	return gulp.src(['./build/scripts', './build/components/'])
+	return gulp.src(['./build/scripts', './build/components/', './build/dependencies'])
 		.pipe(clean());
 });
 
 gulp.task('watch', function() {
-	gulp.watch('./dev/assets/scripts/*.js', ['transform']);
+	gulp.watch('./dev/assets/scripts/*.js', ['transpile']);
 	gulp.watch('./dev/assets/styles/*.styl', ['stylus']);
 	gulp.watch('./dev/assets/templates/*.jade', ['jade']);
 	gulp.watch('./dev/application/*.py', ['copy-application-files']);
 });
 
-gulp.task('default', ['clean', 'transform', 'transpile', 'stylus', 'jade', 'copy-application-files', 'copy-manifests', 'copy-bower-components']);
+gulp.task('default', ['clean', 'transform', 'transpile', 'stylus', 'jade', 'copy-application-files', 'copy-manifests', 'copy-dependencies']);
