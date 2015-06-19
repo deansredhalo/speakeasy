@@ -33,7 +33,7 @@ Let's create the virtual environment that Python will use to execute and manage 
 ```
 $ cd dev
 $ virtualenv application
-$ . application/bin/active
+$ . application/bin/activate
 ```
 
 This will get you into your virtual environment so that you can install...
