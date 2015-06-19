@@ -1,8 +1,0 @@
-{
-    "files": [
-    	"dependencies/dependencies.js",
-        "components/main.js",
-        "scripts/scripts.js",
-        "styles/main.css"
-    ]
-}

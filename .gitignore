@@ -1,2 +1,6 @@
 node_modules
-speakeasy/assets/bower_components
+dev/assets/bower_components
+dev/application/bin
+dev/application/include
+dev/application/lib/python2.7
+build
