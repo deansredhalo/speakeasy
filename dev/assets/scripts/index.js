@@ -1,3 +1,3 @@
 'use strict';
 
-console.log('POOP LIVES HERE');
+console.log('This script was imported!');
