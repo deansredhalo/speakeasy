@@ -20,14 +20,15 @@ var gulp = require('gulp'),
 
 // tasks
 gulp.task('copy-components', function() {
-	return gulp.src('./dev/assets/components/*.jsx')
+	return gulp.src('./dev/assets/components/*.js')
 		.pipe(gulp.dest('./build/assets/components'))
 		.pipe(size());
 });
 
 gulp.task('transform', function() {
-	return gulp.src('./dev/assets/components/*.js*', { read: false })
+	return gulp.src('./dev/assets/components/*.js*')
 		.pipe(babel())
+		.pipe(concat('./components.js'))
 		.pipe(browserify({ transform: ['reactify'] }))
 		.pipe(rename(function (path) { path.extname = '.js' }))
 		.pipe(gulp.dest('./build/assets/components'))

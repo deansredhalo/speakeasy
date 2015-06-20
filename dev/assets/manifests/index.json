@@ -1,7 +1,7 @@
 {
     "files": [
     	"dependencies/dependencies.js",
-        "components/main.js",
+        "components/components.js",
         "scripts/scripts.js",
         "styles/main.css"
     ]
